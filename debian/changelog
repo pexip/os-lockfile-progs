@@ -1,3 +1,9 @@
+lockfile-progs (0.1.16pexip1) pexip; urgency=low
+
+  * Prepare Pexip packaging
+
+ -- John-Mark Bell <jmb@pexip.com>  Tue, 24 Dec 2013 23:33:15 +0000
+
 lockfile-progs (0.1.16) unstable; urgency=low
 
   * Remove unused rc variable in chk() to silence gcc warning.

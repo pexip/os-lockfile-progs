@@ -1,9 +1,11 @@
 Source: lockfile-progs
 Section: misc
 Priority: optional
-Maintainer: Rob Browning <rlb@defaultvalue.org>
+Maintainer: Pexip AS <packaging@pexip.com>
+XSBC-Pexip-Original-Maintainer: Rob Browning <rlb@defaultvalue.org>
 Build-Depends: liblockfile-dev, debhelper (>= 7)
 Standards-Version: 3.6.1
+XS-Pexip-Upstream: http://archive.ubuntu.com/ubuntu/ precise
 
 Package: lockfile-progs
 Architecture: any
