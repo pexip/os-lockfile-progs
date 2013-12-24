@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+# Copyright 1998 Rob Browning <rlb@defaultvalue.org>
+# This file is covered under the terms of the Gnu Public License.
+
+export CFLAGS := -DDEBIAN -O2 -g
+export LDFLAGS := -g
+
+%:
+	dh $@
+
+override_dh_testdir:
+	test -f debian/rules
+	test -f lockfile-progs.c
+
+override_dh_auto_install:
+	install -d debian/lockfile-progs/usr/bin
+	cp -a bin/* debian/lockfile-progs/usr/bin/
+
+        # manpages
+	install -d debian/lockfile-progs/usr/share/man/man1
+	cp -a man/* debian/lockfile-progs/usr/share/man/man1
+	find debian/lockfile-progs/usr/share/man -type f | xargs gzip -9v
+	(cd debian/lockfile-progs/usr/share/man && \
+	 for file in `find -type l`; \
+	 do \
+	   ln -sf lockfile-progs.1.gz $${file}.gz; \
+	   rm -f $${file}; \
+	 done)
+
+override_dh_fixperms:
+	dh_fixperms
+	chown :mail debian/lockfile-progs/usr/bin/mail-lock
+	chmod g+s debian/lockfile-progs/usr/bin/mail-lock
